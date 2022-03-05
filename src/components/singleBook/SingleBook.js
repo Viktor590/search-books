@@ -18,11 +18,15 @@ const SingleBook = () => {
   }, [bookId]);
 
   const View = ({ book }) => {
+    let img = book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.small;
+    let correctImg = img ? img : "https://серебро.рф/img/placeholder.png"
+
+
     return (
       <div className='singleBook'>
         <Link to="/" className='singleBook__link'>Вернуться назад</Link>
         <div className="singleBook__content-top">
-          <img className='singleBook__content-img' src={book.volumeInfo.imageLinks.small} alt={book.volumeInfo.title} />
+          <img className='singleBook__content-img' src={correctImg} alt={book.volumeInfo.title} />
           <div className="singleBook__content-dscr">
             <h2 className="singleBook__dscr-title">
               {book.volumeInfo.title}
