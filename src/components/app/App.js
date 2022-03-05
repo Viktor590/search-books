@@ -1,13 +1,20 @@
-import Header from './../header/Header';
-import SearchPanel from '../searchPanel/SearchPanel';
-import './App.scss';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { StartPage } from '../pages';
+import { SingleBookPages } from '../pages';
+
+import './app.scss'
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <SearchPanel />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route exact path="/" element={<StartPage />} />
+          <Route path="/singleBook/:bookId" element={<SingleBookPages />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

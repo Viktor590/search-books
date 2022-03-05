@@ -1,0 +1,62 @@
+.singleBook {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+
+  &__link {
+    font-size: 18px;
+    color: #000;
+    transition: all .3s;
+
+    &:hover {
+      color: red;
+    }
+
+    &-more {
+      font-size: 25px;
+      color: #fff;
+      padding: 10px;
+      border: 1px solid red;
+      border-radius: 10px;
+      max-width: 100px;
+      margin-bottom: 30px;
+      text-align: center;
+      transition: all .3s;
+
+      &:hover {
+        background: red;
+        border-color: #fff;
+      }
+    }
+  }
+
+  &__content {
+    &-top {
+      max-width: 500px;
+      display: flex;
+    }
+
+    &-img {
+      max-width: 50%;
+    }
+  }
+
+  &__dscr {
+    &-title {
+      font-size: 40px;
+      margin: 10px 15px;
+    }
+
+    &-author,
+    &-publisher {
+      font-size: 20px;
+      margin: 10px 15px;
+    }
+  }
+
+  &__bottom-dscr {
+    font-size: 20px;
+    max-width: 600px;
+  }
+
+}

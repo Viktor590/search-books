@@ -1,5 +1,6 @@
 const BooksServices = () => {
   const API_BASE = 'https://www.googleapis.com/books/v1/volumes?q=';
+  const API_SEARCH_ID = 'https://www.googleapis.com/books/v1/volumes/'
   const API_KEY = 'AIzaSyDRvE_mm-lURNAAWMBP60IK2Rb5QS4NgpY';
 
 
@@ -17,6 +18,11 @@ const BooksServices = () => {
     const res = await getResource(`${API_BASE}${value}&maxResults=30&key=${API_KEY}`)
     return res
   }
-  return { getBook }
+
+  const getBookId = async (id) => {
+    const res = await getResource(`${API_SEARCH_ID}${id}?key=${API_KEY}`);
+    return res
+  }
+  return { getBook, getBookId }
 }
 export default BooksServices;

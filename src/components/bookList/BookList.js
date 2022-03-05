@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import './bookList.scss';
 
 const BookList = (props) => {
+
 
   const { totalItems, items } = props.book;
 
@@ -26,31 +29,38 @@ const BookList = (props) => {
                     <li
                       key={index}
                       className="bookItem">
-                      <img
-                        className="bookItem__img"
-                        src={el.volumeInfo.imageLinks.thumbnail}
-                        alt={el.volumeInfo.title} />
-                      <div className="bookItem__content">
-                        <h2 className="bookItem__content-title">
-                          {el.volumeInfo.title}
-                        </h2>
-                        <p className="bookItem__content-price">
-                          {amount.toFixed()} {currentPrice}
-                        </p>
-                      </div>
+                      <Link to={`/singleBook/${el.id}`}>
+                        <img
+                          className="bookItem__img"
+                          src={el.volumeInfo.imageLinks.thumbnail}
+                          alt={el.volumeInfo.title} />
+                        <div className="bookItem__content">
+                          <h2 className="bookItem__content-title">
+                            {el.volumeInfo.title}
+                          </h2>
+                          <p className="bookItem__content-price">
+                            {amount.toFixed()} {currentPrice}
+                          </p>
+                        </div>
+                      </Link>
                     </li>
                   )
                 }
-                return null
+                return null;
               })
             }
           </ul >
         </>
       )
     }
-
-    return null;
+    return (
+      <h2 className='bookList__text'>
+        Варианты книг по вашему запросу появятся здесь
+      </h2>
+    );
   }
+
+
   return (
     <View book={items} />
   )
