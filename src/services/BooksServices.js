@@ -14,8 +14,8 @@ const BooksServices = () => {
     return await res.json();
   }
 
-  const getBook = async (value) => {
-    const res = await getResource(`${API_BASE}${value}&maxResults=30&key=${API_KEY}`)
+  const getBook = async (value, correctIndex = 0) => {
+    const res = await getResource(`${API_BASE}${value}&startIndex=${correctIndex}&maxResults=30&key=${API_KEY}`)
     return res
   }
 

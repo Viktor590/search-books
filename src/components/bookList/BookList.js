@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import BooksServices from '../../services/BooksServices';
 
 import './bookList.scss';
 
 const BookList = (props) => {
-
-
+  const [bookList, setBookList] = useState([])
+  const [startIndex, setStartIndex] = useState(1);
+  const [loadMore, setLoadMore] = useState('')
   const { totalItems, items } = props.book;
+  const { getBook } = BooksServices();
 
-  const View = ({ book }) => {
+  useEffect(() => {
+    setLoadMore(props.correctSearch);
+    setBookList(items)
+  }, [items])
+
+  const View = (book) => {
     if (book !== undefined) {
       return (
         <>
@@ -22,31 +30,33 @@ const BookList = (props) => {
                   el.saleInfo.listPrice.amount;
                 let currentPrice = el.saleInfo.listPrice &&
                   el.saleInfo.listPrice.currencyCode;
+                let img = el.volumeInfo.imageLinks && el.volumeInfo.imageLinks.thumbnail;
 
-                if (amount !== undefined &&
-                  currentPrice !== undefined) {
-                  return (
-                    <li
-                      key={index}
-                      className="bookItem">
-                      <Link to={`/singleBook/${el.id}`}>
-                        <img
-                          className="bookItem__img"
-                          src={el.volumeInfo.imageLinks.thumbnail}
-                          alt={el.volumeInfo.title} />
-                        <div className="bookItem__content">
-                          <h2 className="bookItem__content-title">
-                            {el.volumeInfo.title}
-                          </h2>
-                          <p className="bookItem__content-price">
-                            {amount.toFixed()} {currentPrice}
-                          </p>
-                        </div>
-                      </Link>
-                    </li>
-                  )
-                }
-                return null;
+                let correctImg = img !== undefined ? img : 'https://серебро.рф/img/placeholder.png';
+
+                let resAmount = amount !== undefined ? amount.toFixed() : 'Цена неизвестна';
+
+                return (
+                  <li
+                    key={index}
+                    className="bookItem">
+                    <Link to={`/singleBook/${el.id}`}>
+                      <img
+                        className="bookItem__img"
+                        src={correctImg}
+                        alt={el.volumeInfo.title} />
+                      <div className="bookItem__content">
+                        <h2 className="bookItem__content-title">
+                          {el.volumeInfo.title}
+                        </h2>
+                        <p className="bookItem__content-price">
+                          {resAmount}&nbsp;
+                          {currentPrice}
+                        </p>
+                      </div>
+                    </Link>
+                  </li>
+                )
               })
             }
           </ul >
@@ -60,9 +70,33 @@ const BookList = (props) => {
     );
   }
 
+  const onBooksList = (newBookList) => {
+    setBookList(bookList => [...bookList, ...newBookList])
+  }
+
+  const addItem = (currentIndex) => {
+    setStartIndex(currentIndex);
+
+    getBook(loadMore, currentIndex)
+      .then(res => onBooksList(res.items))
+  }
+
+  const resArr = View(bookList)
 
   return (
-    <View book={items} />
+    <>
+      {resArr}
+      <div
+        className='btn__block'
+        style={totalItems > 40 ?
+          { 'display': 'flex' } : { 'display': 'none' }}>
+        <button
+          className='bookList__btn'
+          onClick={() => addItem(startIndex + 30)}>
+          Смотреть еще
+        </button>
+      </div>
+    </>
   )
 }
 

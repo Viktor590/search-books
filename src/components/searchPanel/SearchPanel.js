@@ -7,19 +7,22 @@ const SearchPanel = () => {
   const { getBook } = BooksService();
   const [data, setData] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const [correctSearch, setCorrectSearch] = useState('')
 
   const addData = (data) => {
     setData(data);
   }
 
   const searchBooks = (e) => {
-    // console.log(inputValue);
     getBook(inputValue)
       .then(addData);
 
+    setCorrectSearch(inputValue)
     setInputValue('')
     e.preventDefault()
   }
+
+  console.log();
 
   return (
     <>
@@ -35,7 +38,8 @@ const SearchPanel = () => {
           onClick={searchBooks}>Поиск</button>
       </form>
       <BookList
-        book={data} />
+        book={data}
+        correctSearch={correctSearch} />
     </>
   )
 

@@ -8,6 +8,18 @@
   &__text {
     text-align: center;
   }
+
+  &__btn {
+    background: red;
+    font-size: 20px;
+    padding: 10px;
+    margin: 20px 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: #fff;
+    justify-content: center;
+    cursor: pointer;
+  }
 }
 
 .bookItem {
@@ -47,4 +59,9 @@
       bottom: 10px;
     }
   }
+}
+
+.btn__block {
+  display: flex;
+  justify-content: center;
 }
