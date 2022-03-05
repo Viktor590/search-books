@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BookList from '../bookList/BookList';
 import BooksService from './../../services/BooksServices';
 import './searchPanel.scss';
 
@@ -19,20 +20,23 @@ const SearchPanel = () => {
     setInputValue('')
     e.preventDefault()
   }
-  console.log(data);
 
   return (
-    <form className='searchPanel'>
-      <input
-        className='searchPanel__input'
-        type="text"
-        placeholder='Введите название книги'
-        value={inputValue}
-        onChange={e => setInputValue(e.target.value)} />
-      <button
-        className='searchPanel__btn'
-        onClick={searchBooks}>Поиск</button>
-    </form>
+    <>
+      <form className='searchPanel'>
+        <input
+          className='searchPanel__input'
+          type="text"
+          placeholder='Введите название книги'
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value)} />
+        <button
+          className='searchPanel__btn'
+          onClick={searchBooks}>Поиск</button>
+      </form>
+      <BookList
+        book={data} />
+    </>
   )
 
 }

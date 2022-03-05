@@ -1,0 +1,46 @@
+.bookList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 200px));
+  grid-gap: 20px;
+  margin-top: 30px;
+
+}
+
+.bookItem {
+  cursor: pointer;
+  background: #000;
+  display: inline-block;
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+  height: 400px;
+  transition: all .3s;
+
+  &:hover {
+    box-shadow: 4px 4px 23px 0px rgba(50, 145, 217, 0.56);
+    transform: translateY(-2px);
+  }
+
+  &__img {
+    width: 100%;
+    height: 250px;
+  }
+
+  &__content {
+    &-title {
+      color: #fff;
+      font-size: 20px;
+      height: 69px;
+      overflow: hidden;
+    }
+
+    &-price {
+      color: #fff;
+      font-size: 20px;
+      // padding: 20px 5px;
+      position: absolute;
+      bottom: 10px;
+    }
+  }
+}
