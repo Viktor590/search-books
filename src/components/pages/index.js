@@ -1,4 +1,5 @@
 import StartPage from "./StartPage";
 import SingleBookPages from "./SingleBookPages";
+import ErrorPage from "./ErrorPage";
 
-export { StartPage, SingleBookPages };
+export { StartPage, SingleBookPages, ErrorPage };
