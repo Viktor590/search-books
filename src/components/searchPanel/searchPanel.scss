@@ -24,3 +24,16 @@
     }
   }
 }
+
+@media(max-width:500px) {
+  .searchPanel {
+    &__input {
+      width: 200px;
+      font-size: 14px;
+    }
+
+    &__btn {
+      font-size: 12px;
+    }
+  }
+}

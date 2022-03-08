@@ -65,3 +65,11 @@
   display: flex;
   justify-content: center;
 }
+
+@media(max-width:500px) {
+  .bookList {
+    &__title {
+      font-size: 16px;
+    }
+  }
+}

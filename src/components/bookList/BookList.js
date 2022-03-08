@@ -21,6 +21,7 @@ const BookList = (props) => {
   const View = (book) => {
     if (book !== undefined) {
       return (
+
         <>
           <h3 className='bookList__title'>
             По вашему запросу найдено {totalItems} книг
@@ -83,6 +84,7 @@ const BookList = (props) => {
     getBook(loadMore, currentIndex)
       .then(res => onBooksList(res.items))
   }
+
 
   return (
     <>
