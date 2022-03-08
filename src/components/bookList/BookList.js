@@ -6,7 +6,7 @@ import './bookList.scss';
 
 const BookList = (props) => {
   const [bookList, setBookList] = useState([])
-  const [startIndex, setStartIndex] = useState(1);
+  const [startIndex, setStartIndex] = useState(30);
   const [loadMore, setLoadMore] = useState('')
   const { totalItems, items } = props.book;
   const { getBook } = BooksServices();
@@ -71,6 +71,7 @@ const BookList = (props) => {
   }
 
   const onBooksList = (newBookList) => {
+    console.log(newBookList);
     setBookList(bookList => [...bookList, ...newBookList])
   }
 
@@ -88,7 +89,7 @@ const BookList = (props) => {
       {resArr}
       <div
         className='btn__block'
-        style={totalItems > 40 ?
+        style={totalItems > 30 && bookList.length === startIndex ?
           { 'display': 'flex' } : { 'display': 'none' }}>
         <button
           className='bookList__btn'
