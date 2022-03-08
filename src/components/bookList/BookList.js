@@ -5,16 +5,18 @@ import BooksServices from '../../services/BooksServices';
 import './bookList.scss';
 
 const BookList = (props) => {
-  const [bookList, setBookList] = useState([])
-  const [startIndex, setStartIndex] = useState(30);
+  const [bookList, setBookList] = useState([]);
+  const [startIndex, setStartIndex] = useState(0);
+  const [stopLoadMore, setStopLoadMore] = useState('')
   const [loadMore, setLoadMore] = useState('')
   const { totalItems, items } = props.book;
   const { getBook } = BooksServices();
 
   useEffect(() => {
     setLoadMore(props.correctSearch);
-    setBookList(items)
-  }, [items])
+    setBookList(items);
+
+  }, [items]);
 
   const View = (book) => {
     if (book !== undefined) {
@@ -71,7 +73,7 @@ const BookList = (props) => {
   }
 
   const onBooksList = (newBookList) => {
-    console.log(newBookList);
+    setStopLoadMore(newBookList.length < 30 ? 'stop' : null)
     setBookList(bookList => [...bookList, ...newBookList])
   }
 
@@ -82,14 +84,12 @@ const BookList = (props) => {
       .then(res => onBooksList(res.items))
   }
 
-  const resArr = View(bookList)
-
   return (
     <>
-      {resArr}
+      {View(bookList)}
       <div
         className='btn__block'
-        style={totalItems > 30 && bookList.length === startIndex ?
+        style={totalItems > 30 && stopLoadMore !== 'stop' ?
           { 'display': 'flex' } : { 'display': 'none' }}>
         <button
           className='bookList__btn'

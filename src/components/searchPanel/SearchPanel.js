@@ -9,6 +9,7 @@ const SearchPanel = () => {
   const [inputValue, setInputValue] = useState('');
   const [correctSearch, setCorrectSearch] = useState('')
 
+
   const addData = (data) => {
     setData(data);
   }
