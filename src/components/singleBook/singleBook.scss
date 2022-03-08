@@ -65,21 +65,29 @@
 
 @media(max-width: 500px) {
   .singleBook {
-    margin-top: 10px;
+    margin: 10px 0;
 
     &__content-top {
       flex-direction: column;
-    }
-
-    &__dscr-title {
-      font-size: 25px;
-      margin: 10px 0;
     }
 
     &__bottom-dscr {
       font-size: 15px;
       max-height: 250px;
       overflow-y: auto;
+    }
+
+    &__dscr {
+      &-title {
+        font-size: 25px;
+        margin: 10px 0;
+      }
+
+      &-author,
+      &-publisher {
+        font-size: 18px;
+        margin: 10px 0;
+      }
     }
   }
 }
